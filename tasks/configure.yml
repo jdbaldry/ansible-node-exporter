@@ -14,7 +14,7 @@
     path: '/usr/local/bin/node_exporter'
     capability: cap_dac_read_search+ep
     state: present
-  when: not ansible_check_mode
+  when: not ansible_check_mode and ansible_os_family != 'Darwin'
 
 - name: Allow Node Exporter port in SELinux on RedHat OS family
   seport:
