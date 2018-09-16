@@ -61,3 +61,4 @@
     group: 0
     mode: 0644
   notify: restart node_exporter
+  when: ansible_os_family != 'Darwin'
