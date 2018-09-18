@@ -1,5 +1,5 @@
 ---
-- name: \[linux\] restart node_exporter
+- name: "[linux] restart node_exporter"
   become: true
   systemd:
     daemon_reload: true
@@ -7,3 +7,9 @@
     state: restarted
   listen: restart node_exporter
   when: ansible_os_family != 'Darwin'
+
+- name: "[darwin] restart node_exporter"
+  become: true
+  shell: launchctl unload /Library/LaunchDaemons/node_exporter.plist; launchctl load /Library/LaunchDaemons/node_exporter.plist
+  listen: restart node_exporter
+  when: ansible_os_family == 'Darwin'

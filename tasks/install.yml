@@ -62,3 +62,15 @@
     mode: 0644
   notify: restart node_exporter
   when: ansible_os_family != 'Darwin'
+
+- name: create launchd plist
+  become: true
+  template:
+    src: node_exporter.plist.j2
+    dest: /Library/LaunchDaemons/node_exporter.plist
+    owner: root
+    group: 0
+    mode: 0644
+  notify:
+    - restart node_exporter
+  when: ansible_os_family == 'Darwin'
