@@ -1,2 +1,6 @@
 ---
-node_exporter_dependencies: 
+node_exporter_dependencies:
+
+node_exporter_enabled_collectors:
+  - textfile:
+      directory: "{{ node_exporter_textfile_dir }}"
